@@ -3,7 +3,6 @@ package be.intizo.aoc.v2024;
 import be.intizo.aoc.common.AbstractSolver;
 import be.intizo.aoc.common.Vector2D;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -124,9 +123,6 @@ public class Day6 extends AbstractSolver {
 
         var currentPosition = characterPosition.copy();
 
-        Set<Vector2D> positionsVisited = new HashSet<>();
-        positionsVisited.add(characterPosition);
-
         final Set<Vector2D> possibleObstructions = new HashSet<>();
 
         while (true) {
@@ -143,9 +139,7 @@ public class Day6 extends AbstractSolver {
 
             checkLoopPossibility(grid, currentPosition, direction).ifPresent(possibleObstructions::add);
 
-
             currentPosition = nextPosition;
-            positionsVisited.add(currentPosition);
         }
 
         //Now check which obstructions cause loops.
@@ -167,8 +161,6 @@ public class Day6 extends AbstractSolver {
         Set<String> visitedStates = new HashSet<>();
         while (true) {
             var nextPosition = currentPosition.add(currentDirection);
-
-
 
             if (isOutOfBounds(nextPosition, grid)) {
                 break;
