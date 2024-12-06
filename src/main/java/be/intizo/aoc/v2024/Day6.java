@@ -50,7 +50,7 @@ public class Day6 extends AbstractSolver {
                 continue;
             }
 
-            checkLoopPossibility(grid, currentPosition, direction).ifPresent(possibleObstructions::add);
+            findObstructionPoints(grid, currentPosition, direction).ifPresent(possibleObstructions::add);
 
 
             currentPosition = nextPosition;
@@ -65,25 +65,7 @@ public class Day6 extends AbstractSolver {
                 pos.x() < 0 || pos.x() >= grid[pos.y()].length;
     }
 
-    private Optional<Vector2D> checkLoopPossibility(char[][] grid, Vector2D currentPosition, Vector2D direction) {
-        var possibleDirection = direction.rotate(90);
 
-        var position = currentPosition.copy();
-
-        while (true) {
-            position = position.add(possibleDirection);
-
-            if (isOutOfBounds(position, grid)) {
-                break;
-            }
-
-            if (grid[position.y()][position.x()] == '#') {
-                return Optional.of(currentPosition.add(direction));
-            }
-        }
-
-        return Optional.empty();
-    }
 
     private Vector2D findCharacter(char[][] grid, char token) {
         for (int y = 0; y < grid.length; y++) {
@@ -117,6 +99,7 @@ public class Day6 extends AbstractSolver {
         var characterPosition = findCharacter(grid, '^');
 
         Vector2D direction = new Vector2D(0, -1);
+
         if (characterPosition == null) {
             return;
         }
@@ -126,7 +109,6 @@ public class Day6 extends AbstractSolver {
         final Set<Vector2D> possibleObstructions = new HashSet<>();
 
         while (true) {
-
             var nextPosition = currentPosition.add(direction);
 
             if (isOutOfBounds(nextPosition, grid)) {
@@ -137,7 +119,7 @@ public class Day6 extends AbstractSolver {
                 continue;
             }
 
-            checkLoopPossibility(grid, currentPosition, direction).ifPresent(possibleObstructions::add);
+            findObstructionPoints(grid, currentPosition, direction).ifPresent(possibleObstructions::add);
 
             currentPosition = nextPosition;
         }
@@ -152,6 +134,25 @@ public class Day6 extends AbstractSolver {
         }
 
         System.out.println(count);
+    }
+    private Optional<Vector2D> findObstructionPoints(char[][] grid, Vector2D currentPosition, Vector2D direction) {
+        var possibleDirection = direction.rotate(90);
+
+        var position = currentPosition.copy();
+
+        while (true) {
+            position = position.add(possibleDirection);
+
+            if (isOutOfBounds(position, grid)) {
+                break;
+            }
+
+            if (grid[position.y()][position.x()] == '#') {
+                return Optional.of(currentPosition.add(direction));
+            }
+        }
+
+        return Optional.empty();
     }
 
     private boolean containsLoop(Vector2D characterPosition, char[][] grid, Vector2D obstruction) {
@@ -177,7 +178,7 @@ public class Day6 extends AbstractSolver {
                 return true;
             }
 
-            visitedStates.add(nextPosition + "|" + currentDirection);
+            visitedStates.add(state);
 
             currentPosition = nextPosition;
         }
