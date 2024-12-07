@@ -13,7 +13,8 @@ class AOCTests {
         //solve(new Day3());
         //solve(new Day4());
         //solve(new Day5());
-        solve(new Day6());
+        //solve(new Day6());
+        solve(new Day7());
     }
 
     private void solve(AbstractSolver day) {
@@ -21,14 +22,14 @@ class AOCTests {
         System.out.println("--------------------");
         System.out.println("Part 1: test");
 
-//       day.testPart1(day.getYear(), day.getDay() + "_01");
+       day.testPart1(day.getYear(), day.getDay() + "_01");
         //System.out.println("Part 1: solution");
-        //day.solvePart1(day.getYear(), day.getDay());
+        day.solvePart1(day.getYear(), day.getDay());
 
 //        System.out.println("Part 2: test");
-        day.testPart2(day.getYear(), day.getDay() + "_02");
+//       day.testPart2(day.getYear(), day.getDay() + "_02");
 //        System.out.println("Part 2: solution");
-        day.solvePart2(day.getYear(), day.getDay());
+//        day.solvePart2(day.getYear(), day.getDay());
 //        System.out.println("-----------------------");
     }
 }
