@@ -1,7 +1,6 @@
 package be.intizo.aoc.common;
 
 import java.util.Objects;
-import java.util.Vector;
 
 public class Vector2D {
 

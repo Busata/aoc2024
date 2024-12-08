@@ -14,7 +14,8 @@ class AOCTests {
         //solve(new Day4());
         //solve(new Day5());
         //solve(new Day6());
-        solve(new Day7());
+        //solve(new Day7());
+        solve(new Day8());
     }
 
     private void solve(AbstractSolver day) {
@@ -26,10 +27,10 @@ class AOCTests {
         //System.out.println("Part 1: solution");
         day.solvePart1(day.getYear(), day.getDay());
 
-//        System.out.println("Part 2: test");
-//       day.testPart2(day.getYear(), day.getDay() + "_02");
+       System.out.println("Part 2: test");
+       day.testPart2(day.getYear(), day.getDay() + "_02");
 //        System.out.println("Part 2: solution");
-//        day.solvePart2(day.getYear(), day.getDay());
+        day.solvePart2(day.getYear(), day.getDay());
 //        System.out.println("-----------------------");
     }
 }

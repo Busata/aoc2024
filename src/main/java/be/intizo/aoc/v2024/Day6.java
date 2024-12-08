@@ -79,19 +79,6 @@ public class Day6 extends AbstractSolver {
         return null;
     }
 
-    private void printGrid(char[][] grid, Set<Vector2D> visited) {
-        for (int y = 0; y < grid.length; y++) {
-            for (int x = 0; x < grid[y].length; x++) {
-                if (visited.contains(new Vector2D(x, y))) {
-                    System.out.print("X");
-                } else {
-                    System.out.print(grid[y][x]);
-                }
-            }
-            System.out.println();
-        }
-    }
-
     @Override
     public void solvePart2(List<String> lines) {
         var grid = lines.stream().map(String::toCharArray).toArray(char[][]::new);
